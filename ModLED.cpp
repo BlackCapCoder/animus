@@ -20,15 +20,11 @@ void CModLED::Begin(void)
 void CModLED::InitiateLED(void) // this should only be called once per boot up
 {
   LEDCount = 36;
-  if (Global.isLeft) {
-    FastLED.addLeds<NEOPIXEL, 11>(LEDs, LEDCount);
-  } else {
-    FastLED.addLeds<NEOPIXEL, 26>(LEDs, LEDCount);
-  }
-  RefreshLED();
-  return;
 
   uint8_t ledPin = GetData(LED_PIN_MEM);
+
+  ledPin = IS_LEFT ? 254 : 255;
+
   if (ledPin == 255) // this be janky due to hardware problems
   {
     LEDCount = GetData(LED_COUNT_MEM);

@@ -1,3 +1,5 @@
+#define IS_LEFT 1
+
 #define DEFAULT_ROW 12
 #define DEFAULT_COL 12
 #define I2C_HOST_ADDRESS 7
@@ -38,7 +40,6 @@ public:
   byte LEDBrightness = 127;
   byte numKeysDown = 0;
 
-  bool isLeft = true;
   CGlobal(void);
 };
 extern CGlobal Global;
