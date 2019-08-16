@@ -23,20 +23,12 @@ void CModLED::InitiateLED(void) // this should only be called once per boot up
 
   uint8_t ledPin = GetData(LED_PIN_MEM);
 
-  ledPin = IS_LEFT ? 254 : 255;
-
-  if (ledPin == 255) // this be janky due to hardware problems
-  {
-    LEDCount = GetData(LED_COUNT_MEM);
+  if (IS_LEFT)
     FastLED.addLeds<NEOPIXEL, 11>(LEDs, LEDCount);
-    RefreshLED();
-  }
   else
-  {
-    LEDCount = GetData(LED_COUNT_MEM);
     FastLED.addLeds<NEOPIXEL, 26>(LEDs, LEDCount);
-    RefreshLED();
-  }
+
+  RefreshLED();
 }
 
 bool cvs[6][7] = {0};
